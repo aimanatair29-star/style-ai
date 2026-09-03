@@ -1,1 +1,181 @@
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f4efe7;
+    color: #2d2925;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    border-bottom: 1px solid #d8d0c4;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 28px;
+    letter-spacing: 5px;
+}
+
+nav {
+    display: flex;
+    gap: 40px;
+}
+
+nav a {
+    color: #403a34;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.hero {
+    min-height: 650px;
+    display: flex;
+    align-items: center;
+    padding: 70px 9%;
+    gap: 80px;
+}
+
+.hero-text {
+    width: 50%;
+}
+
+.small-title {
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+}
+
+h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(60px, 7vw, 105px);
+    font-weight: normal;
+    line-height: 0.95;
+}
+
+h1 span {
+    font-style: italic;
+}
+
+.description {
+    max-width: 430px;
+    margin-top: 35px;
+    line-height: 1.8;
+    color: #6b6259;
+    font-size: 16px;
+}
+
+button {
+    margin-top: 35px;
+    padding: 16px 28px;
+    background: #2d2925;
+    color: #f4efe7;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 1px;
+    font-size: 13px;
+}
+
+button:hover {
+    background: #51483f;
+}
+
+.hero-image {
+    width: 50%;
+    height: 520px;
+    background:
+        linear-gradient(
+            rgba(70, 55, 40, 0.15),
+            rgba(70, 55, 40, 0.15)
+        ),
+        url("https://images.unsplash.com/photo-1483985988355-763728e1935b")
+        center / cover;
+    position: relative;
+}
+
+.fashion-card {
+    position: absolute;
+    right: -25px;
+    bottom: 30px;
+    background: #e8dfd2;
+    padding: 25px;
+    width: 150px;
+}
+
+.fashion-card span {
+    font-family: Georgia, serif;
+    font-size: 30px;
+}
+
+.fashion-card p {
+    margin-top: 15px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    line-height: 1.7;
+}
+
+.intro {
+    text-align: center;
+    padding: 110px 20px;
+    border-top: 1px solid #d8d0c4;
+}
+
+.intro p {
+    font-size: 10px;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+}
+
+.intro h2 {
+    font-family: Georgia, serif;
+    font-size: 55px;
+    font-weight: normal;
+    line-height: 1.1;
+}
+
+.intro h2 i {
+    color: #75695d;
+}
+
+@media (max-width: 768px) {
+
+    header {
+        padding: 0 5%;
+    }
+
+    nav {
+        gap: 15px;
+    }
+
+    .hero {
+        flex-direction: column;
+        padding: 60px 6%;
+    }
+
+    .hero-text,
+    .hero-image {
+        width: 100%;
+    }
+
+    .hero-image {
+        height: 450px;
+    }
+
+    h1 {
+        font-size: 65px;
+    }
+
+    .intro h2 {
+        font-size: 40px;
+    }
+}
