@@ -1,69 +1,602 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AI Fashion Stylist</title>
+<title>Style Muse | AI Fashion Stylist</title>
 
-    <link rel="stylesheet" href="style.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f3eee5;
+    color: #3d3028;
+    font-family: Arial, sans-serif;
+}
+
+/* ================= NAVBAR ================= */
+
+nav {
+    height: 82px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #d8cec0;
+    background: #f3eee5;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 27px;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    font-style: italic;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #4d4037;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.nav-links a:hover {
+    opacity: .6;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    min-height: 720px;
+    padding: 70px 7%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.hero-text {
+    max-width: 570px;
+}
+
+.small-title {
+    font-size: 11px;
+    letter-spacing: 5px;
+    color: #806d5e;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-family: Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(55px, 7vw, 100px);
+    line-height: .9;
+}
+
+.hero h1 em {
+    font-style: italic;
+}
+
+.hero-description {
+    max-width: 450px;
+    margin-top: 30px;
+    line-height: 1.8;
+    color: #76685e;
+    font-size: 14px;
+}
+
+.hero-button {
+    display: inline-block;
+    margin-top: 35px;
+    padding: 16px 29px;
+    background: #493a31;
+    color: #fffaf3;
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: .3s;
+}
+
+.hero-button:hover {
+    background: #6d5849;
+}
+
+/* ================= HERO IMAGE ================= */
+
+.hero-image {
+    position: relative;
+    height: 570px;
+}
+
+.hero-image img {
+    width: 82%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    filter: sepia(.12) saturate(.8);
+}
+
+.hero-image::before {
+    content: "";
+    position: absolute;
+    width: 82%;
+    height: 100%;
+    border: 1px solid #a79685;
+    right: -15px;
+    top: 15px;
+}
+
+.image-note {
+    position: absolute;
+    left: 0;
+    bottom: 35px;
+    background: #eee4d7;
+    padding: 18px 22px;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 17px;
+}
+
+/* ================= DIVIDER ================= */
+
+.divider {
+    width: 86%;
+    margin: auto;
+    height: 1px;
+    background: #d4c8b9;
+}
+
+/* ================= STYLE SECTION ================= */
+
+.styles {
+    padding: 110px 7%;
+}
+
+.section-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 50px;
+}
+
+.section-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: #806d5e;
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-family: Georgia, serif;
+    font-size: 54px;
+    font-weight: 400;
+}
+
+.section-text {
+    max-width: 300px;
+    color: #76685e;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* ================= MASONRY ================= */
+
+.style-grid {
+    columns: 3 250px;
+    column-gap: 22px;
+}
+
+.style-card {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 22px;
+    break-inside: avoid;
+    background: #e9dfd1;
+    overflow: hidden;
+    position: relative;
+}
+
+.style-card img {
+    width: 100%;
+    display: block;
+    filter: saturate(.75) sepia(.1);
+    transition: transform .6s;
+}
+
+.style-card:hover img {
+    transform: scale(1.04);
+}
+
+.card-content {
+    padding: 18px;
+}
+
+.card-number {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: #927b68;
+}
+
+.card-content h3 {
+    font-family: Georgia, serif;
+    font-weight: 400;
+    font-size: 26px;
+    margin: 8px 0;
+}
+
+.card-content p {
+    font-size: 11px;
+    color: #75665b;
+}
+
+/* ================= AI STYLIST ================= */
+
+.stylist {
+    margin: 40px 7% 110px;
+    background: #e4d8c9;
+    padding: 80px;
+    text-align: center;
+}
+
+.stylist-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: #806d5e;
+}
+
+.stylist h2 {
+    font-family: Georgia, serif;
+    font-weight: 400;
+    font-size: 58px;
+    margin: 18px 0;
+}
+
+.stylist p {
+    max-width: 550px;
+    margin: auto;
+    color: #6d6056;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.stylist-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 32px;
+    border: 1px solid #59483d;
+    color: #493a31;
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.stylist-button:hover {
+    background: #493a31;
+    color: white;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    border-top: 1px solid #d4c8b9;
+    padding: 50px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-logo {
+    font-family: Georgia, serif;
+    font-size: 24px;
+}
+
+footer p {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #88796c;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 800px) {
+
+    nav {
+        height: 70px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding-top: 55px;
+        gap: 50px;
+    }
+
+    .hero h1 {
+        font-size: 65px;
+    }
+
+    .hero-image {
+        height: 470px;
+    }
+
+    .section-top {
+        display: block;
+    }
+
+    .section-text {
+        margin-top: 20px;
+    }
+
+    .section-title {
+        font-size: 43px;
+    }
+
+    .stylist {
+        margin-left: 5%;
+        margin-right: 5%;
+        padding: 55px 25px;
+    }
+
+    .stylist h2 {
+        font-size: 43px;
+    }
+
+    footer {
+        display: block;
+        text-align: center;
+    }
+
+    footer p {
+        margin-top: 15px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-    <header>
-        <div class="logo">AURA</div>
+<!-- NAVIGATION -->
 
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Discover</a>
-            <a href="#">About</a>
-        </nav>
-    </header>
+<nav>
+    <div class="logo">Style <span>Muse</span></div>
 
-    <main class="hero">
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#styles">Styles</a></li>
+        <li><a href="#stylist">AI Stylist</a></li>
+    </ul>
+</nav>
 
-        <div class="hero-text">
 
-            <p class="small-title">YOUR PERSONAL AI STYLIST</p>
+<!-- HERO -->
 
-            <h1>
-                Dress like<br>
-                <span>you mean it.</span>
-            </h1>
+<section class="hero" id="home">
 
-            <p class="description">
-                Discover outfits curated around your personality,
-                occasion and unique sense of style.
-            </p>
+    <div class="hero-text">
 
-            <button onclick="startStyling()">
-                Discover Your Style →
-            </button>
-
+        <div class="small-title">
+            YOUR PERSONAL AI FASHION STYLIST
         </div>
 
-        <div class="hero-image">
-            <div class="fashion-card">
-                <span>01</span>
-                <p>CURATED<br>FOR YOU</p>
+        <h1>
+            Dress like<br>
+            <em>yourself.</em>
+        </h1>
+
+        <p class="hero-description">
+            Discover outfits that feel like you.
+            From timeless classics to effortless everyday
+            looks, let your personal style tell the story.
+        </p>
+
+        <a href="#stylist" class="hero-button">
+            Discover Your Style
+        </a>
+
+    </div>
+
+
+    <div class="hero-image">
+
+        <img
+        src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=85"
+        alt="Fashion editorial">
+
+        <div class="image-note">
+            Style is personal.
+        </div>
+
+    </div>
+
+</section>
+
+
+<div class="divider"></div>
+
+
+<!-- STYLE COLLECTION -->
+
+<section class="styles" id="styles">
+
+    <div class="section-top">
+
+        <div>
+            <div class="section-label">
+                THE STYLE EDIT
             </div>
+
+            <h2 class="section-title">
+                Curated for you.
+            </h2>
         </div>
 
-    </main>
+        <p class="section-text">
+            A collection of moods, silhouettes and
+            timeless fashion moments to inspire your
+            next look.
+        </p>
 
-    <section class="intro">
+    </div>
 
-        <p>STYLE • PERSONALITY • CONFIDENCE</p>
 
-        <h2>
-            Fashion should feel<br>
-            <i>like you.</i>
-        </h2>
+    <div class="style-grid">
 
-    </section>
+        <div class="style-card">
 
-    <script src="script.js"></script>
+            <img
+            src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=700&q=80"
+            alt="Classic fashion">
+
+            <div class="card-content">
+                <div class="card-number">01 / CLASSIC</div>
+                <h3>Timeless Muse</h3>
+                <p>Elegant silhouettes with effortless charm.</p>
+            </div>
+
+        </div>
+
+
+        <div class="style-card">
+
+            <img
+            src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=80"
+            alt="Vintage fashion">
+
+            <div class="card-content">
+                <div class="card-number">02 / VINTAGE</div>
+                <h3>Soft Vintage</h3>
+                <p>Romantic details with an old-world mood.</p>
+            </div>
+
+        </div>
+
+
+        <div class="style-card">
+
+            <img
+            src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=700&q=80"
+            alt="Editorial fashion">
+
+            <div class="card-content">
+                <div class="card-number">03 / EDITORIAL</div>
+                <h3>Modern Muse</h3>
+                <p>Clean, confident and effortlessly chic.</p>
+            </div>
+
+        </div>
+
+
+        <div class="style-card">
+
+            <img
+            src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=700&q=80"
+            alt="Fashion wardrobe">
+
+            <div class="card-content">
+                <div class="card-number">04 / EVERYDAY</div>
+                <h3>Daily Elegance</h3>
+                <p>Beautiful outfits for ordinary days.</p>
+            </div>
+
+        </div>
+
+
+        <div class="style-card">
+
+            <img
+            src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=700&q=80"
+            alt="Fashion style">
+
+            <div class="card-content">
+                <div class="card-number">05 / MINIMAL</div>
+                <h3>Quiet Luxury</h3>
+                <p>Simple pieces. Beautiful details.</p>
+            </div>
+
+        </div>
+
+
+        <div class="style-card">
+
+            <img
+            src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=700&q=80"
+            alt="Fashion outfit">
+
+            <div class="card-content">
+                <div class="card-number">06 / FEMININE</div>
+                <h3>Romantic Mood</h3>
+                <p>Soft textures and graceful styling.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- AI STYLIST -->
+
+<section class="stylist" id="stylist">
+
+    <div class="stylist-label">
+        MEET YOUR AI STYLIST
+    </div>
+
+    <h2>
+        Your wardrobe.<br>
+        Reimagined.
+    </h2>
+
+    <p>
+        Tell us your occasion, mood and personal preferences.
+        Style Muse will help you discover an outfit that feels
+        completely your own.
+    </p>
+
+    <a href="#" class="stylist-button">
+        Start Styling
+    </a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-logo">
+        Style Muse
+    </div>
+
+    <p>
+        © 2026 STYLE MUSE · PERSONAL AI FASHION
+    </p>
+
+</footer>
 
 </body>
 </html>
+```
